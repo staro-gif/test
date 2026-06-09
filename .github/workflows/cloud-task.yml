@@ -24,4 +24,4 @@ jobs:
           TASK_NAME: ${{ vars.TASK_NAME }}
           TASK_ENDPOINT: ${{ secrets.TASK_ENDPOINT }}
           TASK_API_KEY: ${{ secrets.TASK_API_KEY }}
-        run: python3 scripts/task.py
+        run: python3 task.py
