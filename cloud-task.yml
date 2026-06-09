@@ -1,0 +1,27 @@
+name: Cloud Task
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 0 * * *"
+
+jobs:
+  run-task:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Run task
+        env:
+          TASK_NAME: ${{ vars.TASK_NAME }}
+          TASK_ENDPOINT: ${{ secrets.TASK_ENDPOINT }}
+          TASK_API_KEY: ${{ secrets.TASK_API_KEY }}
+        run: python3 scripts/task.py
